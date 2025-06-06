@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.medical_helps.model.sys.dao.SysUserDao">
+<select id="getUserMenu" resultType="com.example.medical_helps.Helper.DataHelper">
+    SELECT
+        distinct t3.`menu_name`,t3.id,t3.`menu_icon`,t3.`menu_path`,t3.`parent_id`
+    FROM
+        sys_role_use t1
+    INNER JOIN
+        sys_role_menu t2
+    ON
+        t1.`role_id`=t2.`role_id`
+    INNER JOIN sys_menu t3
+   ON
+       t2.`menu_id`=t3.`id`
+    WHERE
+       t1.`user_id`=#{userId}
+</select>
+</mapper>
